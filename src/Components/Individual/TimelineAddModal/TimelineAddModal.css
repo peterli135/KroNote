@@ -1,0 +1,212 @@
+/* Modal Theme Editor */
+.modal__theme {
+    --gap: 15px;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3); /* grays out outer content when on modal */
+}
+
+.modal__inner__theme {
+    background-color: var(--color-light-gray);
+    width: 1000px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modal__top__theme {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-primary);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.modal__title {
+    flex-grow: 1;
+    padding: 0 var(--gap);
+    font-size: 1.5rem; /*24px;*/
+    color: #fff;
+    font-weight: normal;
+}
+
+.modal__close {
+    display: flex;
+    align-items: center;
+    padding: var(--gap);
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.modal__close span {
+    cursor: pointer;
+}
+
+.modal__close span:hover{
+    opacity: 0.75;
+}
+
+.modal__content {
+    padding: 0 var(--gap);
+    text-align: center;
+}
+
+.modal__bottom {
+    text-align: right;
+    padding: var(--gap);
+}
+
+.modal__button__cancel {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #cd5c5c;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.875rem; /*14px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal__button {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #009578;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.875rem; /*14px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal__button:not(:last-child), .modal__button__cancel:not(:last-child) {
+    margin-right: var(--gap);
+}
+
+.modal__button__cancel:hover, .modal__button:hover {
+    opacity: 0.8;
+}
+
+/* Form Content */
+.form__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__item > * {
+    align-self: flex-start;
+}
+
+.form__label {
+    font-weight: 600;
+    padding: 15px 0 0 0;
+    font-size: 1.125rem;
+}
+
+.form__input {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 1000px;
+    min-height: calc(0.9em + (0.8em * 2) + 0.6em);
+    padding: 0.8em;
+    font-size: 1em;
+    outline: none;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    background: #f9f9f9;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: inherit;
+}
+
+.form__input:focus {
+    background: #fff;
+}
+
+.form__input::placeholder {
+    color: #bbbbbb;
+}
+
+textarea.form__input {
+    resize: none;
+    min-height: 200px;
+}
+
+.form__item__bottom {
+    text-align: right;
+    padding: var(--gap) 0;
+}
+
+.form__button__cancel {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #cd5c5c;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.875rem; /*14px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form__button {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #009578;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.875rem; /*14px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form__button:not(:last-child), .form__button__cancel:not(:last-child) {
+    margin-right: var(--gap);
+}
+
+.form__button__cancel:hover, .form__button:hover {
+    opacity: 0.8;
+}
+
+/* Text Editor CSS */
+
+.rdw-option-wrapper {
+    box-sizing: content-box;
+}
+
+.rdw-dropdownoption-default {
+    text-align: left;
+}
+
+.editorClassName {
+    padding: 0px;
+    box-shadow: none;
+    border: none;
+    background: #f9f9f9;
+    transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.toolbarClassName {
+    color: #000;
+}
+
+.public-DraftEditorPlaceholder-inner {
+    font-family: inherit;
+    color: var(--color-dark-gray);
+}

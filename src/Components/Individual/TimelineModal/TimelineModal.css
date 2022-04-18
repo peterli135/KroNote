@@ -1,0 +1,296 @@
+/* Timeline Modal Open */
+.timeline__modal {
+    --gap: 15px;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4); /* grays out outer content when on modal */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.timeline__modal__inner__theme {
+    background-color: #fffafa;
+    width: 1000px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    margin-top: 150px;
+}
+
+.timeline__modal__top__theme {
+    display: flex;
+    align-items: center;
+    /*background-color: var(--color-primary);*/
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: solid thin var(--color-light-gray);
+}
+
+.timeline__modal__title {
+    flex-grow: 1;
+    padding: 0 var(--gap);
+    font-size: 1.5rem; /*24px;*/
+    color: var(--color-light-black);
+    font-weight: 600;
+}
+
+.timeline__modal__date {
+    font-size: 1.25rem;
+    color: var(--color-light-black);
+    font-weight: normal;
+}
+
+.timeline__modal__close__button {
+    display: flex;
+    align-items: center;
+    padding: var(--gap) var(--gap) var(--gap) 3px;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--color-light-black);
+}
+
+.timeline__modal__close__button span {
+    cursor: pointer;
+}
+
+.timeline__modal__close__button span:hover {
+    opacity: 0.75;
+}
+
+.timeline__modal__content {
+    padding: 0 var(--gap);
+}
+
+.timeline__modal__paragraph {
+    color: var(--color-light-black);
+    text-align: left;
+    font-size: 1.125rem;
+}
+
+/* Delete Timeline Modal */
+.delete__modal {
+    --gap: 15px;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4); /* grays out outer content when on modal */
+}
+
+.delete__modal__container {
+    background-color: #fffafa;
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    /*outline: 1px solid var(--color-light-gray);*/
+}
+
+.delete__modal__header {
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: solid thin var(--color-light-gray);
+}
+
+.delete__modal__title {
+    flex-grow: 1;
+    padding: 0 var(--gap);
+    font-size: 1.5rem; /*24px;*/
+    color: var(--color-light-black);
+    font-weight: bold;
+}
+
+.delete__modal__close__button {
+    display: flex;
+    align-items: center;
+    padding: var(--gap);
+    background: none;
+    border: none;
+    outline: none;
+    color: #808080;
+}
+
+.delete__modal__close__button span:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.delete__modal__body {
+    padding: var(--gap) var(--gap) 0 var(--gap);
+}
+
+.delete__modal__text {
+    color: #000;
+    text-align: left;
+    font-size: 1.125rem;
+    background-color: rgba(255, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: var(--gap);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.delete__modal__footer {
+    text-align: right;
+    padding: var(--gap);
+}
+
+.delete__modal__cancel__button {
+    display: inline-block;
+    padding: 6px 12px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #000;
+    cursor: pointer;
+    font-size: 0.875rem; /*14px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.delete__modal__cancel__button:hover {
+    opacity: 0.8;
+}
+
+.delete__modal__confirm__button {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #cd5c5c;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.875rem; /*14px;*/
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.delete__modal__confirm__button:hover {
+    opacity: 0.8;
+}
+
+.delete__modal__cancel__button:not(:last-child), .delete__modal__confirm__button:not(:last-child) {
+    margin-right: var(--gap);
+}
+
+/* View and Edit Mode Buttons */
+.view__edit__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12.5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.view__edit__container .view__mode__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.view__edit__container .view__mode__container .view__mode {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.view__edit__container .edit__mode__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.view__edit__container .edit__mode__container .edit__mode {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.modal__edit__top {
+    padding: 7.5px;
+}
+
+/* Delete and Edit Buttons on Modal */
+.timeline__modal__delete__button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--color-light-black);
+    border-radius: 50%;
+    outline: none;
+    font-weight: normal;
+    padding: var(--gap) 3px var(--gap) 3px;
+}
+.timeline__modal__delete__button span {
+    cursor: pointer;
+    transition: 0.1s;
+}
+.timeline__modal__delete__button span:hover {
+    color: #cd5c5c;
+}
+
+.timeline__modal__edit__button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--color-light-black);
+    border-radius: 50%;
+    outline: none;
+    font-weight: normal;
+    padding: var(--gap) 3px var(--gap) var(--gap);
+}
+.timeline__modal__edit__button span {
+    cursor: pointer;
+    transition: 0.1s;
+}
+.timeline__modal__edit__button span:hover {
+    color: var(--color-light-green);
+}

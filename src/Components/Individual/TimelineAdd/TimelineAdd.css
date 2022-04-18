@@ -1,0 +1,115 @@
+/* View and Edit Mode Buttons */
+/*.view__edit__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12.5%;
+    position: sticky;
+    top: 100px;
+}
+
+.view__edit__container .view__mode__container {
+    background-color: var(--color-primary);
+    padding: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.view__edit__container .view__mode__container .view__mode {
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.view__edit__container .edit__mode__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.view__edit__container .edit__mode__container .edit__mode {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    cursor: pointer;
+}*/
+
+/* Input Data Modal */
+.button__container__add {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 100px;
+}
+
+.button__image__container__add {
+    overflow: hidden;
+    background: var(--color-primary);
+    list-style: none;
+    white-space: nowrap;
+    border-radius: 25px;
+    display: inline-block;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.button__image__container__add .button__text__container__add {
+    opacity: 0;
+    color: green;
+    max-width: 0;
+    display: inline-block;
+    text-decoration: none;
+    transition: max-width 1s ease-out .1s, opacity 1s ease-out .1s, color;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.button__image__container__add .button__text__container__add:hover {
+    color: #ff726f;
+}
+
+.button__image__container__add a i {
+    color: #fff;
+    line-height: 1;
+    font-size: 3rem; /*42px;*/
+    margin-left: 3px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.button__image__container__add .button__text__container__add a {
+    float: right;
+    display: absolute;
+    padding-right: 16px;
+    color: #fff;
+    font-size: 1.5rem; /*22px;*/
+    text-align: center;
+}
+
+.button__image__container__add:hover .button__text__container__add, .button__image__container__add.is-active .button__text__container__add {
+    opacity: 1;
+    max-width: 300px;
+    transition: max-width 1s ease-out 0.1s, opacity 1s ease-out 0.1s, color 0.2s;
+}

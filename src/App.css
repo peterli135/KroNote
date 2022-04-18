@@ -1,0 +1,249 @@
+/* Different Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-white: #fff;
+    --color-dark-gray: #c9c9c9;
+    --color-light-gray: #e0e0e0;
+    --color-primary: #35424a;
+    --color-black: #000;
+    --color-light-black: #333;
+    --color-light-green: #009578;
+    --color-background: #fff;
+    --color-background-picker: #fff;
+    --position: relative;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow: auto;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/*img {
+    width: 100%;
+}*/
+
+/*button {
+    font-family: inherit;
+}*/
+
+/* Website Header */
+header .header__container {
+    background-color: var(--color-primary);
+    height: 4.375rem; /*70px;*/
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12.5%;
+    transition: all 0.5s;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+header .header__container a {
+    color: #fff;
+    font-weight: 500;
+}
+
+header .header__container .name {
+    font-size: 2.25rem;/*36px;*/
+}
+
+header .header__container .profile_picture {
+    font-size: 2.25rem;/*36px;*/
+}
+
+header .header__container .birth_date {
+    font-size: 2.25rem;/*36px;*/
+}
+
+header a:hover {
+    cursor: default;
+}
+
+/* Navigation Bar Links: */
+.navbar {
+    background: var(--color-background);
+    position: var(--position);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    transition: all 0.5s;
+}
+
+#tsparticles canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.navbar__container {
+    display: flex;
+    align-items: center;
+    margin: 100px;
+}
+
+nav ul {
+    flex: 1;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 25px;
+    top: 50%;
+}
+
+nav ul li a {
+    color: #fff;
+    background-color: var(--color-primary);
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 2.25rem;/*36px;*/
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Float up on hover with shadow */
+.navbar__links {
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    transition: all 0.5s;
+}
+
+.navbar__links::before {
+    pointer-events: none;
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+    /* W3C */
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform, opacity;
+    transition-property: transform, opacity;
+}
+
+.navbar__links:hover, .navbar__links:focus, .navbar__links:active {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    /* move the element up by 5px */
+}
+
+.navbar__links:hover:before, .navbar__links:focus:before, .navbar__links:active:before {
+    opacity: 1;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+    /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+/*This is for floating elements constantly*/
+/*nav ul li a {
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    transform: translateY(0);
+    animation: fl1 4s infinite linear;
+    position: relative;
+    border-radius: 15px;
+    background-color: #35424a;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.navbar__links::before {
+    content: attr(data-text);
+    position: absolute;
+    animation: fl2 4s infinite linear;
+}
+
+.navbar__links:hover {
+    opacity: 0.75;
+    transition: 1s;
+}
+
+nav ul li a:hover {
+    background: #bdbdbd;
+}
+
+@keyframes fl1 {
+    30% {
+        transform: translateY(7.5%) rotate(1deg);
+    }
+    70% {
+        transform: translateY(7.5%) rotate(-1deg);
+    }
+}*/
+
+/* Progress Bar CSS */
+.progress {
+    background-color: #00957850;
+    margin-top: 5px;
+	border-radius: 4px;
+	position: relative;
+	height: 12px;
+	width: 74.4px;
+}
+
+.progress-done {
+	background: linear-gradient(to left, #233329, #63d471);
+	box-shadow: 0 3px 3px -5px #233329, 0 2px 5px #63d471;
+	border-radius: 4px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 0;
+	opacity: 0;
+    font-size: 12px;
+}
