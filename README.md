@@ -1,6 +1,6 @@
 # Seijis Website App
 
-A website that allows you to store your important information and also edit them when needed.
+A website made from ReactJS and Firebase that allows you to store your important information and also edit them when needed.
 
 ## Website Functionality
 
