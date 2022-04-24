@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import "../Components/Individual/individual.css";
+import "../Components/Timeline/Timeline.css";
 import { Link } from "react-router-dom";
 import ParticlesBackground from "../theme/Particles";
-import TimelineAdd from "../Components/Individual/TimelineAdd/TimelineAdd";
-import Timeline from "../Components/Individual/Timeline/Timeline";
+import TimelineAdd from "../Components/Timeline/TimelineAdd/TimelineAdd";
+import Timeline from "../Components/Timeline/TimelineMain/TimelineMain";
+import useFirestore from "../Components/Firebase/useFirestore";
 import { storage, ref, getDownloadURL } from "../Components/Firebase/config";
 
 function Individual() {
@@ -126,6 +127,9 @@ function Individual() {
     }
   };
 
+  const { docs } = useFirestore("individual-timeline");
+  const docCollectionName = "individual-timeline";
+
   return (
     <>
       <header>
@@ -158,9 +162,9 @@ function Individual() {
 
       <ParticlesBackground />
       <div className="timeline__background">
-        <TimelineAdd />
+        <TimelineAdd docCollectionName={docCollectionName} />
 
-        <Timeline />
+        <Timeline docs={docs} docCollectionName={docCollectionName} />
       </div>
     </>
   );

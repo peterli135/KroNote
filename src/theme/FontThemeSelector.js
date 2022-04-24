@@ -9,14 +9,6 @@ function FontThemeSelector() {
 
     // hooks to open/close the font dropdown menu
     useEffect(() => {
-        if (isOpen) {
-            document.querySelector(".font__dropdown__list").classList.add("show");
-            document.querySelector(".expand__icon").classList.add("rotate");
-        } else if (!isOpen) {
-            document.querySelector(".font__dropdown__list").classList.remove("show");
-            document.querySelector(".expand__icon").classList.remove("rotate");
-        }
-
         const checkIfClickedOutside = event => {
             // If the menu is open and the clicked target is not within the menu, then close the menu
             if (isOpen && ref.current && !ref.current.contains(event.target)) {
@@ -28,7 +20,6 @@ function FontThemeSelector() {
         // Cleanup the event listener
         document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-
     })
 
     // Change the select font text field
@@ -44,7 +35,7 @@ function FontThemeSelector() {
         if (currentFontTheme) {
             setFontTheme(currentFontTheme);
         }
-    }, []);
+    }, [fontTheme]);
 
     // Change font
     const rootFontChange = (theme) => {
@@ -78,9 +69,9 @@ function FontThemeSelector() {
                 <div className="font__dropdown" ref={ref}>
                     <div className="font__dropdown__menu" onClick={() => setIsOpen(!isOpen)}>
                         <p className="select__font">{selected}</p>
-                        <img src="/expand_more.png" alt="" className="expand__icon"></img>
+                        <img src="/expand_more.png" alt="" className={"expand__icon " + (isOpen ? "rotate" : "")}></img>
                     </div>
-                    <ul className="font__dropdown__list">
+                    <ul className={"font__dropdown__list " + (isOpen ? "show" : "")}>
                         {fontOptions.map((fontOption, fontOptionIndex) => (
                             <li onClick = {() => {
                                     handleClick("theme-" + (fontOptionIndex + 1));

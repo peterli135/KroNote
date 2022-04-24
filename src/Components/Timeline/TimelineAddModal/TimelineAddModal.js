@@ -1,7 +1,7 @@
 import React from "react";
 import "./TimelineAddModal.css";
 import { useForm, Controller } from "react-hook-form";
-import TextEditor from "../../TextEditor";
+import TextEditor from "../../TextEditor/TextEditor";
 import { motion } from "framer-motion";
 
 const TimelineAddModal = ({closeTimelineAddModal, submitTimelineAdd}) => {
@@ -27,12 +27,12 @@ const TimelineAddModal = ({closeTimelineAddModal, submitTimelineAdd}) => {
                     <div className="modal__content">
                         <form onSubmit={handleSubmit(submitTimelineAdd)}>
                             <div className="form__item">
-                                <label htmlFor="date" className="form__label">Heading:</label>
-                                <input type="text" className="form__input" id="form__heading" name="date" placeholder="Enter a headline..."></input>
+                                <label htmlFor="heading" className="form__label">Heading:</label>
+                                <input type="text" className="form__input" id="form__heading" name="heading" placeholder="Enter a headline..." required></input>
                             </div>
                             <div className="form__item">
-                                <label htmlFor="heading" className="form__label">Date:</label>
-                                <input type="date" className="form__input" id="form__date" name="heading" placeholder="Enter a date..."></input>
+                                <label htmlFor="date" className="form__label">Date:</label>
+                                <input type="date" className="form__input" id="form__date" name="date" placeholder="Enter a date..." required></input>
                             </div>
                             <div className="form__item">
                                 <label htmlFor="information" className="form__label">Information:</label>

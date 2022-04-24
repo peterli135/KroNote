@@ -4,7 +4,7 @@ import { firestoreDB, collection, addDoc } from "../../Firebase/config";
 import TimelineAddModal from "../TimelineAddModal/TimelineAddModal";
 import { AnimatePresence } from "framer-motion";
 
-const TimelineAdd = () => {
+const TimelineAdd = ({docCollectionName}) => {
     
     const [addIsOpen, setAddIsOpen] = useState(null);
 
@@ -22,7 +22,7 @@ const TimelineAdd = () => {
     const handleSubmitOnClick = ({information_content}) => {
         let formHeading = document.getElementById("form__heading");
         let formDate = document.getElementById("form__date");
-        addDoc(collection(firestoreDB, "medical-timeline"), {
+        addDoc(collection(firestoreDB, docCollectionName), {
             heading: formHeading.value,
             date: formDate.value,
             information: information_content,

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import useFirestore from "../../Firebase/useFirestore";
 import { getDoc, doc, firestoreDB, deleteDoc } from "../../Firebase/config";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 import { motion, AnimatePresence } from "framer-motion";
 import DeleteConfirmation from "../../DeleteConfirmation";
-import "./Timeline.css";
 import TimelineModal from "../TimelineModal/TimelineModal";
+import { styleMap } from "../../TextEditor/ConstantStyles";
+import "./TimelineMain.css";
 
 /*function Timeline() {
     return (
@@ -29,7 +29,7 @@ import TimelineModal from "../TimelineModal/TimelineModal";
 
 export default Timeline;*/
 
-const Timeline = () => {
+const Timeline = ({docs, docCollectionName}) => {
     // local state for timeline
     const [timelineModalIsOpen, setTimelineModalIsOpen] = useState(null);
     const [timelineHeading, setTimelineHeading] = useState("");
@@ -52,7 +52,6 @@ const Timeline = () => {
     }, [timelineModalIsOpen])
     
     // gets docs from firestore based on what timeline it is in
-    const { docs } = useFirestore("medical-timeline");
     docs.sort((a, b) => (new Date(b.date).getTime() || -Infinity) - (new Date(a.date).getTime() || -Infinity));
 
     // Formats Date to MM/DD/YYYY
@@ -67,7 +66,7 @@ const Timeline = () => {
             event.preventDefault();
             setTimelineModalIsOpen(!timelineModalIsOpen);
             setDocId(id);
-            let medicalItemRef = doc(firestoreDB, "medical-timeline", id);
+            let medicalItemRef = doc(firestoreDB, docCollectionName, id);
             let medicalItem = await getDoc(medicalItemRef);
     
             // Sets states so the respective information can be displayed on the modal
@@ -98,7 +97,7 @@ const Timeline = () => {
     }
     const deleteTimelineItemTrue = async () => {
         if (deleteModal.show && deleteModal.id) {
-            await deleteDoc(doc(firestoreDB, "medical-timeline", deleteModal.id));
+            await deleteDoc(doc(firestoreDB, docCollectionName, deleteModal.id));
             setDeleteModal({
                 show: false,
                 id: null,
@@ -121,28 +120,31 @@ const Timeline = () => {
                 <div className="timeline__container">
                     <ul className="timeline__items">
                         { docs && docs.map((doc, docIndex) => {
-                            const informationContentState = convertFromRaw(doc.information);
-                            const editorState = EditorState.createWithContent(informationContentState);
-                            return (
-                                <motion.li data-id={doc.id} key={doc.id} onClick={(event) => {triggerTimelineModal(event, doc.id)}}
-                                    className={timelineModalIsOpen && (docId === doc.id) ? "trigger__modal timeline__point active " : "trigger__modal timeline__point"}
-                                >
-                                    <motion.div className={"timeline__content " + (((docIndex+1) % 2 === 0) ? "row-right" : "row-left")}
-                                        layout
+                            if (doc.information) {
+                                const informationContentState = convertFromRaw(doc.information);
+                                const editorState = EditorState.createWithContent(informationContentState);
+                                return (
+                                    <motion.li data-id={doc.id} key={doc.id} onClick={(event) => {triggerTimelineModal(event, doc.id)}}
+                                        className={timelineModalIsOpen && (docId === doc.id) ? "trigger__modal timeline__point active " : "trigger__modal timeline__point"}
                                     >
-                                        <h3 className="timeline__date">{formatCourseDate(doc.date)}</h3>
-                                        <div className="timeline__content__title__container">
-                                            <h1 className="timeline__content__title">{doc.heading}</h1>
-                                            <motion.button className="timeline__delete" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                                <span className="material-icons" onClick={(event) => {deleteTimelineItem(event, doc.id)}}>delete</span>
-                                            </motion.button>
-                                        </div>
-                                        <div className="timeline__paragraph">
-                                            <Editor className="timeline__paragraph" editorState={editorState} readOnly={true} />
-                                        </div>
-                                    </motion.div>
-                                </motion.li>
-                            )
+                                        <motion.div className={"timeline__content " + (((docIndex+1) % 2 === 0) ? "row-right" : "row-left")}
+                                            layout
+                                        >
+                                            <h3 className="timeline__date">{doc.date ? formatCourseDate(doc.date) : ""}</h3>
+                                            <div className="timeline__content__title__container">
+                                                <h1 className="timeline__content__title">{doc.heading}</h1>
+                                                <motion.button className="timeline__delete" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                                                    <span className="material-icons" onClick={(event) => {deleteTimelineItem(event, doc.id)}}>delete</span>
+                                                </motion.button>
+                                            </div>
+                                            <div className="timeline__paragraph">
+                                                <Editor className="timeline__paragraph" editorState={editorState} customStyleMap={styleMap} readOnly={true} />
+                                            </div>
+                                        </motion.div>
+                                    </motion.li>
+                                )
+                            }
+                            return (null);
                         })}
                     </ul>
                 </div>
@@ -158,6 +160,7 @@ const Timeline = () => {
                         contentBlock={contentBlock}
                         docId={docId}
                         deleteTimelineItem={deleteTimelineItem}
+                        docCollectionName={docCollectionName}
                     />
                 )}
             </AnimatePresence>

@@ -29,7 +29,7 @@
 }
 
 .timeline .timeline__container .timeline__items .timeline__point:last-child {
-    margin-bottom: -120px;
+    margin-bottom: -250px;
 }
 
 .timeline .timeline__container .timeline__items .timeline__point .timeline__content::before {

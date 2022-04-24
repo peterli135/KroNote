@@ -5,6 +5,10 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import Individual from "./Pages/Individual";
 import Family from "./Pages/Family";
+import Medical from "./Pages/Medical";
+import Legal from "./Pages/Legal";
+import School from "./Pages/School";
+import Treatment from "./Pages/Treatment";
 
 render(
   <BrowserRouter>
@@ -12,7 +16,11 @@ render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="individual" element={<Individual />} />
-        {/*<Route path="family" element={<Family />} />*/}
+        <Route path="family" element={<Family />} />
+        <Route path="medical" element={<Medical />} />
+        <Route path="legal" element={<Legal />} />
+        <Route path="school" element={<School />} />
+        <Route path="treatment" element={<Treatment />} />
       </Routes>
     </React.StrictMode>
   </BrowserRouter>,

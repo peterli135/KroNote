@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import TextEditorEdit from "../../TextEditorEdit";
-import { Editor, EditorState, convertFromRaw } from "draft-js";
-import { motion } from "framer-motion";
-import "./TimelineModal.css";
 import { firestoreDB, doc, setDoc } from "../../Firebase/config";
+import { useForm, Controller } from "react-hook-form";
+import { Editor, EditorState, convertFromRaw } from "draft-js";
+import TextEditor from "../../TextEditor/TextEditor";
+import { motion } from "framer-motion";
+import { styleMap } from "../../TextEditor/ConstantStyles";
+import "./TimelineModal.css";
 
-const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, closeTimelineModal, contentBlock, docId, deleteTimelineItem }) => {
+const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, closeTimelineModal, contentBlock, docId, deleteTimelineItem, docCollectionName}) => {
 
     const [editIsActive, setEditIsActive] = useState(false);
     const [newContentBlock, setNewContentBlock] = useState();
@@ -22,7 +23,7 @@ const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, clo
 
     const updateTimelineInfo = ({information_content}) => {
         setNewContentBlock(information_content);
-        setDoc(doc(firestoreDB, "medical-timeline", docId), {
+        setDoc(doc(firestoreDB, docCollectionName, docId), {
             heading: timelineHeading,
             date: formatDate(timelineDate),
             information: information_content,
@@ -73,18 +74,18 @@ const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, clo
                     </div>
                     <div className="timeline__modal__content">
                         <div className="timeline__modal__paragraph">
-                            { timelineInformation && !editIsActive && <Editor className="timeline__paragraph" readOnly={true} 
+                            { timelineInformation && !editIsActive && <Editor className="timeline__paragraph" readOnly={true} customStyleMap={styleMap}
                                 editorState={newTimelineInformation ? newTimelineInformation : timelineInformation} /> }
                             { timelineInformation && editIsActive && 
                                 <form onSubmit={handleSubmit(updateTimelineInfo)}>
                                     <div className="modal__edit__top"></div>
                                     <Controller
-                                        as={<TextEditorEdit />}
+                                        as={<TextEditor />}
                                         name="information_content"
                                         control={control}
                                         render={({ field }) => {
                                             return (
-                                                <TextEditorEdit contentBlock={newContentBlock ? newContentBlock : contentBlock} value={field.value} onChange={field.onChange} />
+                                                <TextEditor contentBlock={newContentBlock ? newContentBlock : contentBlock} value={field.value} onChange={field.onChange} />
                                             );
                                         }}
                                     />
