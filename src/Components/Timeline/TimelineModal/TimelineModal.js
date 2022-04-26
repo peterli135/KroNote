@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { styleMap } from "../../TextEditor/ConstantStyles";
 import "./TimelineModal.css";
 
-const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, closeTimelineModal, contentBlock, docId, deleteTimelineItem, docCollectionName}) => {
+const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, closeTimelineModal, contentBlock, docId, deleteTimelineItem, docCollectionName }) => {
 
     const [editIsActive, setEditIsActive] = useState(false);
     const [newContentBlock, setNewContentBlock] = useState();
@@ -61,11 +61,11 @@ const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, clo
                         <div className="timeline__modal__title">{timelineHeading}</div>
                         <p className="timeline__modal__date">{timelineDate}</p>
                         <button className="timeline__modal__edit__button">
-                            <motion.span className="material-icons" onClick={() => setEditIsActive(!editIsActive)}
+                            <motion.span className={"material-icons " + (editIsActive ? "active" : "")} onClick={() => setEditIsActive(!editIsActive)}
                                 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>edit</motion.span>
                         </button>
                         <button className="timeline__modal__delete__button">
-                            <motion.span className="material-icons" onClick={(event) => {deleteTimelineItem(event, docId)}}
+                            <motion.span className={"material-icons"}onClick={(event) => {deleteTimelineItem(event, docId)}}
                                 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>delete</motion.span>
                         </button>
                         <button className="timeline__modal__close__button" type="button">

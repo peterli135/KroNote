@@ -139,7 +139,7 @@ function App() {
         </div>
       </header>
       
-      <ParticlesBackground />
+      {localStorage.getItem("theme-background") === "theme-particles" && <ParticlesBackground />}
       <Navbar />
     
       <footer>

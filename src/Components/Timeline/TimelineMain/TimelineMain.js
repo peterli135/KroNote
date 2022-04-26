@@ -51,6 +51,14 @@ const Timeline = ({docs, docCollectionName}) => {
         body.style.overflow = timelineModalIsOpen ? "hidden" : "auto";
     }, [timelineModalIsOpen])
     
+    // Change date color to black if background theme is white
+    useEffect(() => {
+        document.querySelector(":root").style.setProperty("--color-text-timeline", "#fff");
+        const currentBackgroundTheme = localStorage.getItem("theme-background");
+        if (currentBackgroundTheme === "theme-white" || currentBackgroundTheme === "theme-particles" ) {
+            document.querySelector(":root").style.setProperty("--color-text-timeline", "#333");
+        }
+    })
     // gets docs from firestore based on what timeline it is in
     docs.sort((a, b) => (new Date(b.date).getTime() || -Infinity) - (new Date(a.date).getTime() || -Infinity));
 
@@ -125,7 +133,7 @@ const Timeline = ({docs, docCollectionName}) => {
                                 const editorState = EditorState.createWithContent(informationContentState);
                                 return (
                                     <motion.li data-id={doc.id} key={doc.id} onClick={(event) => {triggerTimelineModal(event, doc.id)}}
-                                        className={timelineModalIsOpen && (docId === doc.id) ? "trigger__modal timeline__point active " : "trigger__modal timeline__point"}
+                                        className={"trigger__modal timeline__point " + (timelineModalIsOpen && (docId === doc.id) ? "active" : "")}
                                     >
                                         <motion.div className={"timeline__content " + (((docIndex+1) % 2 === 0) ? "row-right" : "row-left")}
                                             layout
@@ -134,11 +142,12 @@ const Timeline = ({docs, docCollectionName}) => {
                                             <div className="timeline__content__title__container">
                                                 <h1 className="timeline__content__title">{doc.heading}</h1>
                                                 <motion.button className="timeline__delete" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                                                    <span className="material-icons" onClick={(event) => {deleteTimelineItem(event, doc.id)}}>delete</span>
+                                                    <span className={"material-icons " + (deleteModal.show && (deleteModal.id === doc.id) ? "active" : "")} 
+                                                        onClick={(event) => {deleteTimelineItem(event, doc.id)}}>delete</span>
                                                 </motion.button>
                                             </div>
                                             <div className="timeline__paragraph">
-                                                <Editor className="timeline__paragraph" editorState={editorState} customStyleMap={styleMap} readOnly={true} />
+                                                <Editor editorState={editorState} customStyleMap={styleMap} readOnly={true} />
                                             </div>
                                         </motion.div>
                                     </motion.li>

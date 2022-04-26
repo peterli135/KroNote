@@ -91,15 +91,19 @@
 .timeline .timeline__container .timeline__content .timeline__content__title__container .timeline__delete span:hover {
     color: #cd5c5c;
 }
+.timeline .timeline__container .timeline__content .timeline__content__title__container .timeline__delete span.active {
+    color: #cd5c5c;
+}
 
 .timeline .timeline__container .timeline__content .timeline__paragraph {
     font-size: 1rem;
     line-height: 30px;
     font-weight: 300;
     margin: 10px 0;
+    overflow: hidden;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1000px) {
     /* Timeline for Middle Line */
     .timeline__container:before {
         content: "";
