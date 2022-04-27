@@ -30,7 +30,8 @@
     justify-content: center;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.3); /* grays out outer content when on modal */
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .modal__inner__theme {
@@ -144,7 +145,7 @@
     padding: 0.8em;
     font-size: 1em;
     outline: none;
-    border: 1px solid #dddddd;
+    border: 1px solid #c8c8c8;
     border-radius: 6px;
     background: #f9f9f9;
     transition: background 0.25s, border-color 0.25s, color 0.25s;
@@ -158,6 +159,10 @@
 
 .form__input::placeholder {
     color: #bbbbbb;
+}
+
+.form__input:focus::placeholder {
+    color: #a9a9a9;
 }
 
 textarea.form__input {

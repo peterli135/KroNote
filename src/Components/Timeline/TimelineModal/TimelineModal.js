@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { styleMap } from "../../TextEditor/ConstantStyles";
 import "./TimelineModal.css";
 
-const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, closeTimelineModal, contentBlock, docId, deleteTimelineItem, docCollectionName }) => {
+const TimelineModal = ({ timelineHeading, timelineDate, timelineDescription, timelineInformation, closeTimelineModal, contentBlock, docId, deleteTimelineItem, docCollectionName }) => {
 
     const [editIsActive, setEditIsActive] = useState(false);
     const [newContentBlock, setNewContentBlock] = useState();
@@ -26,6 +26,7 @@ const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, clo
         setDoc(doc(firestoreDB, docCollectionName, docId), {
             heading: timelineHeading,
             date: formatDate(timelineDate),
+            description: timelineDescription,
             information: information_content,
             status: "view"
         });
@@ -72,24 +73,24 @@ const TimelineModal = ({ timelineHeading, timelineDate, timelineInformation, clo
                             <span className="timeline__modal__close material-icons" onClick={closeTimelineModal}>close</span>
                         </button>
                     </div>
-                    <div className="timeline__modal__content">
+                    <div className={"timeline__modal__content " + (editIsActive ? "none" : "padding")}>
                         <div className="timeline__modal__paragraph">
                             { timelineInformation && !editIsActive && <Editor className="timeline__paragraph" readOnly={true} customStyleMap={styleMap}
                                 editorState={newTimelineInformation ? newTimelineInformation : timelineInformation} /> }
                             { timelineInformation && editIsActive && 
                                 <form onSubmit={handleSubmit(updateTimelineInfo)}>
-                                    <div className="modal__edit__top"></div>
+                                    <div className={"modal__edit__top "  + (editIsActive ? "none" : "padding")}></div>
                                     <Controller
                                         as={<TextEditor />}
                                         name="information_content"
                                         control={control}
                                         render={({ field }) => {
                                             return (
-                                                <TextEditor contentBlock={newContentBlock ? newContentBlock : contentBlock} value={field.value} onChange={field.onChange} />
+                                                <TextEditor contentBlock={newContentBlock ? newContentBlock : contentBlock} value={field.value} onChange={field.onChange} readOnly={false}/>
                                             );
                                         }}
                                     />
-                                    <div className="form__item__bottom">
+                                    <div className="timeline__item__bottom">
                                         <button className="form__button__cancel" type="button" onClick={() => setEditIsActive(false)}>Cancel</button>
                                         <button className="form__button" type="submit">Confirm</button>
                                     </div>

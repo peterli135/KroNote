@@ -23,11 +23,13 @@ class TextEditor extends React.Component {
             const contentState = convertFromRaw(content);
             const editorState = EditorState.createWithContent(contentState);
             this.state = {
+                hasFocus: false,
                 contentState,
                 editorState,
             };
         } else {
             this.state = {
+                hasFocus: false,
                 editorState: EditorState.createEmpty()
             };
         }
@@ -56,7 +58,6 @@ class TextEditor extends React.Component {
             contentState
         });
     };
-
     changeEditorState(editorState) {
         this.setState({
             editorState
@@ -83,8 +84,28 @@ class TextEditor extends React.Component {
             }
         }
 
+        // styling for timeline modal edit mode should be different from the add item mode
+        if (this.props.contentBlock) {
+            return (
+                <div className="TextEditor-root form__input__editor__edit">
+                    <div className="TextEditor-wrapper">
+                        <Toolbar editorState={editorState} changeEditorState={this.changeEditorState.bind(this)} />
+                        <div className="TextEditor-container">
+                            <Editor
+                                customStyleMap={styleMap}
+                                placeholder={placeholderText}
+                                editorState={this.state.editorState}
+                                onChange={onEditorStateChange}
+                                handleKeyCommand={this.handleKeyCommand}
+                                keyBindingFn={keyBindingFunction}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )
+        }
         return (
-            <div className="TextEditor-root form__input__editor">
+            <div className={"TextEditor-root form__input__editor " + (this.state.hasFocus ? "hasFocus" : "")}>
                 <div className="TextEditor-wrapper">
                     <Toolbar editorState={editorState} changeEditorState={this.changeEditorState.bind(this)} />
                     <div className="TextEditor-container">
@@ -95,6 +116,8 @@ class TextEditor extends React.Component {
                             onChange={onEditorStateChange}
                             handleKeyCommand={this.handleKeyCommand}
                             keyBindingFn={keyBindingFunction}
+                            onFocus={() => this.setState({ hasFocus: true })}
+                            onBlur={() => this.setState({ hasFocus: false })}
                         />
                     </div>
                 </div>

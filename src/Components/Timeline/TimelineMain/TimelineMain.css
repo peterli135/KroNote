@@ -43,14 +43,6 @@
     transform: rotate(45deg);
 }
 
-.timeline .timeline__container .row-left::before {
-    right: -7px;
-}
-
-.timeline .timeline__container .row-right::before {
-    left: -7px;
-}
-
 .timeline .timeline__container .timeline__content .timeline__date {
     font-size: 1rem;
     font-weight: 500;
@@ -103,7 +95,7 @@
     overflow: hidden;
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 800px) {
     /* Timeline for Middle Line */
     .timeline__container:before {
         content: "";
@@ -116,6 +108,14 @@
         background-color: var(--color-primary);
         box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
         top: 30px;
+    }
+
+    .timeline .timeline__container .row-left::before {
+        right: -7px;
+    }
+    
+    .timeline .timeline__container .row-right::before {
+        left: -7px;
     }
 
     /* Timeline for Each Point */

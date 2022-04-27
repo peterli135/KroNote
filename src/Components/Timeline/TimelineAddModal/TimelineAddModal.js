@@ -35,9 +35,11 @@ const TimelineAddModal = ({closeTimelineAddModal, submitTimelineAdd}) => {
                                 <input type="date" className="form__input" id="form__date" name="date" placeholder="Enter a date..." required></input>
                             </div>
                             <div className="form__item">
+                                <label htmlFor="short__description" className="form__label">Description:</label>
+                                <input type="text" className="form__input" id="form__short__desc" name="short__description" placeholder="Enter a short description for the timeline..."></input>
+                            </div>
+                            <div className="form__item">
                                 <label htmlFor="information" className="form__label">Information:</label>
-                                {/*<textarea className="form__input" id="form__information" name="information" placeholder="Enter any information relevant to your headline..."></textarea>
-                                <TextEditor className="form__input" id="form__information" name="information" />*/}
                                 <Controller
                                     as={<TextEditor />}
                                     name="information_content"

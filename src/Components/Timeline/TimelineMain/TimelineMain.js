@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getDoc, doc, firestoreDB, deleteDoc } from "../../Firebase/config";
-import { Editor, EditorState, convertFromRaw } from "draft-js";
+import { EditorState, convertFromRaw } from "draft-js";
 import { motion, AnimatePresence } from "framer-motion";
 import DeleteConfirmation from "../../DeleteConfirmation";
 import TimelineModal from "../TimelineModal/TimelineModal";
-import { styleMap } from "../../TextEditor/ConstantStyles";
 import "./TimelineMain.css";
 
 /*function Timeline() {
@@ -34,6 +33,7 @@ const Timeline = ({docs, docCollectionName}) => {
     const [timelineModalIsOpen, setTimelineModalIsOpen] = useState(null);
     const [timelineHeading, setTimelineHeading] = useState("");
     const [timelineDate, setTimelineDate] = useState("");
+    const [timelineDescription, setTimelineDescription] = useState("");
     const [timelineInformation, setTimelineInformation] = useState();
     const [deleteMessage, setDeleteMessage] = useState(null);
     const [contentBlock, setContentBlock] = useState();
@@ -74,15 +74,16 @@ const Timeline = ({docs, docCollectionName}) => {
             event.preventDefault();
             setTimelineModalIsOpen(!timelineModalIsOpen);
             setDocId(id);
-            let medicalItemRef = doc(firestoreDB, docCollectionName, id);
-            let medicalItem = await getDoc(medicalItemRef);
+            let collectionItemRef = doc(firestoreDB, docCollectionName, id);
+            let collectionItem = await getDoc(collectionItemRef);
     
-            // Sets states so the respective information can be displayed on the modal
-            if (medicalItem.exists()) {
-                setTimelineHeading(medicalItem.data().heading);
-                setTimelineDate(formatCourseDate(medicalItem.data().date));
-                setContentBlock(medicalItem.data().information);
-                const informationContentState = convertFromRaw(medicalItem.data().information);
+            // sets states so the respective information can be displayed on the modal
+            if (collectionItem.exists()) {
+                setTimelineHeading(collectionItem.data().heading);
+                setTimelineDate(formatCourseDate(collectionItem.data().date));
+                setTimelineDescription(collectionItem.data().description);
+                setContentBlock(collectionItem.data().information);
+                const informationContentState = convertFromRaw(collectionItem.data().information);
                 const editorState = (EditorState.createWithContent(informationContentState));
                 setTimelineInformation(editorState);
             } else {
@@ -129,10 +130,10 @@ const Timeline = ({docs, docCollectionName}) => {
                     <ul className="timeline__items">
                         { docs && docs.map((doc, docIndex) => {
                             if (doc.information) {
-                                const informationContentState = convertFromRaw(doc.information);
-                                const editorState = EditorState.createWithContent(informationContentState);
+                                /*const informationContentState = convertFromRaw(doc.information);
+                                const editorState = EditorState.createWithContent(informationContentState);*/
                                 return (
-                                    <motion.li data-id={doc.id} key={doc.id} onClick={(event) => {triggerTimelineModal(event, doc.id)}}
+                                    <li data-id={doc.id} key={doc.id} onClick={(event) => {triggerTimelineModal(event, doc.id)}}
                                         className={"trigger__modal timeline__point " + (timelineModalIsOpen && (docId === doc.id) ? "active" : "")}
                                     >
                                         <motion.div className={"timeline__content " + (((docIndex+1) % 2 === 0) ? "row-right" : "row-left")}
@@ -146,11 +147,11 @@ const Timeline = ({docs, docCollectionName}) => {
                                                         onClick={(event) => {deleteTimelineItem(event, doc.id)}}>delete</span>
                                                 </motion.button>
                                             </div>
-                                            <div className="timeline__paragraph">
-                                                <Editor editorState={editorState} customStyleMap={styleMap} readOnly={true} />
+                                            <div className="timeline__paragraph">{doc.description}
+                                                {/*<Editor editorState={editorState} customStyleMap={styleMap} readOnly={true} />*/}
                                             </div>
                                         </motion.div>
-                                    </motion.li>
+                                    </li>
                                 )
                             }
                             return (null);
@@ -159,11 +160,12 @@ const Timeline = ({docs, docCollectionName}) => {
                 </div>
             </div>
 
-            <AnimatePresence intial={false} exitBeforeEnter={true} onExitComplete={() => null}>
+            <AnimatePresence initial={false} exitBeforeEnter={true} onExitComplete={() => null}>
                 {timelineModalIsOpen && (
                     <TimelineModal 
                         timelineHeading={timelineHeading}
                         timelineDate={timelineDate}
+                        timelineDescription={timelineDescription}
                         timelineInformation={timelineInformation}
                         closeTimelineModal={closeTimelineModal} 
                         contentBlock={contentBlock}
@@ -174,7 +176,7 @@ const Timeline = ({docs, docCollectionName}) => {
                 )}
             </AnimatePresence>
 
-            <AnimatePresence intial={false} exitBeforeEnter={true} onExitComplete={() => null}>
+            <AnimatePresence initial={false} exitBeforeEnter={true} onExitComplete={() => null}>
                 {deleteModal.show && (
                     <DeleteConfirmation
                         deleteTimelineItemTrue={deleteTimelineItemTrue}

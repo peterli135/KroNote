@@ -31,6 +31,7 @@
     justify-content: center;
     align-items: flex-start;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .timeline__modal__inner__theme {
@@ -46,10 +47,9 @@
 .timeline__modal__top__theme {
     display: flex;
     align-items: center;
-    /*background-color: var(--color-primary);*/
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    border-bottom: solid thin var(--color-light-gray);
+    border-bottom: 1px solid #dadada;
 }
 
 .timeline__modal__title {
@@ -75,17 +75,18 @@
     outline: none;
     color: var(--color-light-black);
 }
-
 .timeline__modal__close__button span {
     cursor: pointer;
 }
-
 .timeline__modal__close__button span:hover {
     opacity: 0.75;
 }
 
-.timeline__modal__content {
+.timeline__modal__content.padding {
     padding: 0 var(--gap);
+}
+.timeline__modal__content.none {
+    padding: 0;
 }
 
 .timeline__modal__paragraph {
@@ -94,6 +95,10 @@
     font-size: 1.125rem;
 }
 
+.timeline__item__bottom {
+    text-align: right;
+    padding: var(--gap); 
+}
 /* Delete Timeline Modal */
 .delete__modal {
     --gap: 15px;
@@ -272,8 +277,11 @@
     outline: none;
 }
 
-.modal__edit__top {
+.modal__edit__top.padding {
     padding: 7.5px;
+}
+.modal__edit__top.none {
+    padding: 0;
 }
 
 /* Delete and Edit Buttons on Modal */

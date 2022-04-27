@@ -5,6 +5,13 @@
     height: fit-content;
 }
 
+.public-DraftEditorPlaceholder-root {
+    color: #bbbbbb;
+}
+.public-DraftEditorPlaceholder-hasFocus {
+    color: #a9a9a9;
+}
+
 .form__input__editor {
     -webkit-appearance: none;
     width: 100%;
@@ -12,19 +19,32 @@
     min-height: calc(0.9em + (0.8em * 2) + 0.6em);
     font-size: 1em;
     outline: none;
-    border: 1px solid #dddddd;
+    border: 1px solid #c8c8c8;
     border-radius: 6px;
     background: #f9f9f9;
     transition: background 0.25s, border-color 0.25s, color 0.25s;
     box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
     font-family: inherit;
 }
+.form__input__editor.hasFocus {
+    background: #fff;
+}
+
+.form__input__editor__edit {
+    -webkit-appearance: none;
+    width: 100%;
+    max-width: 1000px;
+    min-height: calc(0.9em + (0.8em * 2) + 0.6em);
+    font-size: 1em;
+    outline: none;
+    border-bottom: 1px solid #dadada;
+    background: #fffafa;
+    font-family: inherit;
+}
 
 /* Text Editor Toolbar CSS */
 .TextEditor-toolbar {
     border-bottom: 1px solid #dadada;
-    margin-left: 1px;
-    margin-right: 1px;
     padding: 0.2em 0;
 }
 

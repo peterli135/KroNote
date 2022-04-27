@@ -22,27 +22,21 @@ const TimelineAdd = ({docCollectionName}) => {
     const handleSubmitOnClick = ({information_content}) => {
         let formHeading = document.getElementById("form__heading");
         let formDate = document.getElementById("form__date");
+        let formDescription = document.getElementById("form__short__desc");
         addDoc(collection(firestoreDB, docCollectionName), {
             heading: formHeading.value,
             date: formDate.value,
+            description: formDescription.value,
             information: information_content,
             status: "view"
         });
         formHeading.value = "";
         formDate.value = "";
+        formDescription.value = "";
     }
 
     return(
         <>
-            {/*<div className="view__edit__container">
-                <div className="view__mode__container">
-                    <a className="view__mode">View</a>
-                </div>
-                <div className="edit__mode__container">
-                    <a className="edit__mode">Edit</a>
-                    <a className="edit__mode">Export</a>
-                </div>
-            </div>*/}
             <div className="button__container__add">
                 <button onClick={() => setAddIsOpen(!addIsOpen)} className={addIsOpen ? "button__image__container__add is-active" : "button__image__container__add"}>
                     <a href="#!"><i className="material-icons-outlined">edit_note</i></a>
@@ -52,7 +46,7 @@ const TimelineAdd = ({docCollectionName}) => {
                 </button>
             </div>
 
-            <AnimatePresence intial={false} exitBeforeEnter={true} onExitComplete={() => null}>
+            <AnimatePresence initial={false} exitBeforeEnter={true} onExitComplete={() => null}>
                 {addIsOpen && (
                     <TimelineAddModal closeTimelineAddModal={closeTimelineAddModal} submitTimelineAdd={handleSubmitOnClick} />
                 )}

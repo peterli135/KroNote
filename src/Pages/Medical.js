@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../Components/Timeline/Timeline.css";
-import { Link } from "react-router-dom";
 import ParticlesBackground from "../theme/Particles";
+import PagesNavbar from "../Components/PagesNavbar";
 import TimelineAdd from "../Components/Timeline/TimelineAdd/TimelineAdd";
 import Timeline from "../Components/Timeline/TimelineMain/TimelineMain";
 import useFirestore from "../Components/Firebase/useFirestore";
@@ -133,31 +133,7 @@ function Individual() {
   return (
     <>
       <header>
-        <nav className="navbar__content">
-          <Link to="/" className="navbar__content__home">
-            Home
-          </Link>
-          <div className="navbar__content__container">
-            <Link to="/individual" className="navbar__content__links">
-              Individual
-            </Link>
-            <Link to="/family" className="navbar__content__links">
-              Family
-            </Link>
-            <Link to="/medical" className="navbar__content__links active">
-              Medical
-            </Link>
-            <Link to="/legal" className="navbar__content__links">
-              Legal
-            </Link>
-            <Link to="/school" className="navbar__content__links">
-              School
-            </Link>
-            <Link to="/treatment" className="navbar__content__links">
-              Treatment
-            </Link>
-          </div>
-        </nav>
+        <PagesNavbar />
       </header>
 
       <ParticlesBackground />

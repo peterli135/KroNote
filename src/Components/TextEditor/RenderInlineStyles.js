@@ -37,6 +37,12 @@ const RenderInlineStyles = (props) => {
         var matchCurrentStyle = currentStyle.filter(customFontSize => customFontSize.match(/^FONT_SIZE_/));
         if (matchCurrentStyle.isEmpty()) {
             setSelectedFontSize("16");
+        } else {
+            fontSizes.forEach((fontSize) => {
+                if (matchCurrentStyle.has(fontSize.style)) {
+                    setSelectedFontSize(fontSize.label);
+                }
+            })
         }
     }, [props.editorState]);
     // hook to set selected font to default, if no font is currently selected
@@ -45,6 +51,12 @@ const RenderInlineStyles = (props) => {
         var matchCurrentStyle = currentStyle.filter(customFontSize => customFontSize.match(/^FONT-/));
         if (matchCurrentStyle.isEmpty()) {
             setSelectedFont("Default");
+        } else {
+            fontStyles.forEach((fontStyle) => {
+                if (matchCurrentStyle.has(fontStyle.style)) {
+                    setSelectedFont(fontStyle.label);
+                }
+            })
         }
     }, [props.editorState]);
 
