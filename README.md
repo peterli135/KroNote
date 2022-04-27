@@ -15,4 +15,6 @@ A website that allows you to store your important information and also edit them
 - Clone this project
 - Run `npm install` to install the packages
 - Create your own Firebase project and add that config to the [config.js file](src/Components/Firebase/config.js).
+- Create 6 different collections on the Cloud Firestore Database for each of the 6 different pages. 
+  - for example, family would be named "family-timeline", individual would be named "individual-timeline"
 - Run `npm start` to start the server
