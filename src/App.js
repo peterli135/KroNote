@@ -133,9 +133,9 @@ function App() {
     <>
       <header>
         <div className="header__container">
-          <a className="name">Stefan Seiji Dassise</a>
-          <a className="profile_picture">Profile Picture</a>
-          <a className="birth_date">January  29th, 2000</a>
+          <h1 className="name">Stefan Seiji Dassise</h1>
+          <h1 className="profile_picture">Profile Picture</h1>
+          <h1 className="birth_date">January  29th, 2000</h1>
         </div>
       </header>
       
