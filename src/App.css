@@ -68,21 +68,21 @@ header .header__container {
     box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 }
 
-header .header__container a {
+header .header__container h1 {
     color: #fff;
     font-weight: 500;
 }
 
 header .header__container .name {
-    font-size: 2.25rem;/*36px;*/
+    font-size: 2.25vw; /*2.25rem;36px;*/
 }
 
 header .header__container .profile_picture {
-    font-size: 2.25rem;/*36px;*/
+    font-size: 2.25vw; /*2.25rem;36px;*/
 }
 
 header .header__container .birth_date {
-    font-size: 2.25rem;/*36px;*/
+    font-size: 2.25vw; /*2.25rem;36px;*/
 }
 
 header a:hover {
@@ -116,19 +116,19 @@ header a:hover {
     margin: 100px;
 }
 
-nav ul {
+.navbar ul {
     flex: 1;
     text-align: center;
 }
 
-nav ul li {
+.navbar ul li {
     display: inline-block;
     list-style: none;
     margin: 0 25px;
     top: 50%;
 }
 
-nav ul li a {
+.navbar ul li a {
     color: #fff;
     background-color: var(--color-primary);
     padding: 5px;
