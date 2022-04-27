@@ -12,7 +12,7 @@ A website that allows you to store your important information and also edit them
 
 ## Demo
 
-(insert video here)
+[![Website Demo](https://i9.ytimg.com/vi/1I5yGV3xZ_k/mq1.jpg?sqp=CKjMpZMG&rs=AOn4CLAxd79UuKpAY5Bb8Yy1krFS-nZWYQ)](https://youtu.be/1I5yGV3xZ_k)
 
 ## How to run locally
 
