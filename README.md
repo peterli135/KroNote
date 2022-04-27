@@ -14,4 +14,5 @@ A website that allows you to store your important information and also edit them
 
 - Clone this project
 - Run `npm install` to install the packages
+- Create your own Firebase project and add that config to the [config.js file](src/Components/Firebase/config.js).
 - Run `npm start` to start the server
