@@ -10,6 +10,10 @@ A website that allows you to store your important information and also edit them
 - visually outputs the data stored in firebase via a timeline
 - built in Rich Text Editor created from Draft.js with functions that support inline styles and block components.
 
+## Demo
+
+(insert video here)
+
 ## How to run locally
 
 - Clone this project
