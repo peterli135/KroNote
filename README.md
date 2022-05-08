@@ -9,6 +9,7 @@ A website that allows you to store your important information and also edit them
 - full CRUD operations: Create, Read, Update, and Delete data that is stored in firebase
 - visually outputs the data stored in firebase via a timeline
 - built in Rich Text Editor created from Draft.js with functions that support inline styles and block components.
+- animations were created using Framer motion
 
 ## Demo
 
