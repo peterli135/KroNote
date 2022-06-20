@@ -1,4 +1,4 @@
-# Kronote
+# KroNote
 
 A website that allows you to store your important information and also edit them when needed.
 - created with ReactJS and Firebase
